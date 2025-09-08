@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Fortune Cookie</title>
+  <style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #6a0572;
+      text-shadow: 1px 1px 3px #fff;
+    }
+    #fortune-box {
+      width: 300px;
+      min-height: 100px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #6a0572;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background-color: #52045a;
+    }
+    #counter {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #6a0572;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Fortune For Today</h1>
+  <div id="fortune-box">Click the button to reveal your fortune!</div>
+  <button onclick="openFortune()">Open Fortune Cookie</button>
+  <div id="counter"></div>
+
+  <script>
+    const fortunes = [
+      "You will find joy in unexpected places.",
+      "A surprise encounter will brighten your day.",
+      "Your hard work will soon pay off.",
+      "Good news is on its way to you.",
+      "A new opportunity is around the corner.",
+      "Trust your instincts—they will guide you well.",
+      "Happiness comes from small daily victories.",
+      "Your creativity will open new doors.",
+      "A meaningful conversation will change your perspective.",
+      "Patience will bring great rewards."
+    ];
+
+    let count = 0;
+
+    function openFortune() {
+      const randomIndex = Math.floor(Math.random() * fortunes.length);
+      const fortuneBox = document.getElementById("fortune-box");
+      fortuneBox.style.opacity = 0; // reset for animation
+      setTimeout(() => {
+        fortuneBox.textContent = fortunes[randomIndex];
+        fortuneBox.style.opacity = 1;
+      }, 200);
+      count++;
+      document.getElementById("counter").textContent = 
+        `You have opened ${count} fortune${count > 1 ? "s" : ""}.`;
+    }
+  </script>
+</body>
+</html>
